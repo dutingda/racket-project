@@ -1,0 +1,14 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname |grades |) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #t)))
+;;
+;;***************************************************
+;; Tingda Du (20719637)
+;; CS 135 Fall 2017
+;; Assignment 02, Problem 3
+;;***************************************************
+;;
+
+;;(final-cs-135-grade first-midterm second-midterm final-exam assignments participation) produces
+;;   the final grade in the course as a percentage
+;;

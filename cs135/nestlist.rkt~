@@ -1,0 +1,53 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-lambda-reader.ss" "lang")((modname nestlist) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+
+
+;;P3(a)
+;;nfoldr: (X Y -> Y) (Y Y -> Y) Y Nested-Listof-X -> Y
+(define (nfoldr f g b list)
+  (cond
+    [(empty? list) b]
+    [(list? (first list))
+     (g (nfoldr f g b (first list)) (nfoldr f g b (rest list)))]
+    [else (f (first list)
+             (nfoldr f g b (rest list)))]))
+(define (count-items nln) (nfoldr (lambda (x y) (add1 y)) + 0 nln))
+(check-expect (count-items '(1 (2 3) () ((4)))) 4)
+(define (flatten lst) (nfoldr cons append empty lst))
+(check-expect (flatten '(1 (2 3) () ((4)))) '(1 2 3 4))
+
+;;P3(b)
+;;nfilter: (X -> Bool) Nested-Listof-X -> Nested-Listof-X
+(check-expect (nfliter odd? '(1 (2 3) () ((4)))) '(1 (3) () (())))
+
+(define (nfliter f list)
+ (nfoldr (lambda (frst rror) (cond [(f frst) (cons frst rror)]
+                                    [else rror]))
+         cons
+         empty
+         list))
+
+;;P3(c)
+;;nmap: (X -> Y) Nested-Listof-X -> Nested-Listof-Y
+(check-expect (nmap sqr '(1 (2 3) () ((4)))) '(1 (4 9) () ((16))))
+
+(define (nmap f list)
+  (nfoldr (lambda (x y) (cons (f x) y)) cons empty list))
+
+;;P3(d)
+(check-expect (nreverse '(1 (2 3) () ((4)))) '(((4)) ()(3 2) 1))
+(check-expect (nreverse '((1 (2 3)) 4 (5 (6 7 8) 9))) '((9 (8 7 6) 5) 4 ((3 2) 1)))
+
+(define (nreverse list1)
+  (nfoldr (lambda (x y) (append y (list x))) (lambda (lst lst2)
+                                               (append lst2 (list lst)))
+          empty list1))
+
+;;P3(e)
+
+(define (nheight list2)
+  (nfoldr 
+  
+  
+  

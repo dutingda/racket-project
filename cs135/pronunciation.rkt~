@@ -1,0 +1,29 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname pronunciation) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #t)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; YOUR NAME  (ID#)
+;; CS135 Fall 2017
+;; Assignment 05, Problem 2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Ask Racket to give us access to the code in this file.
+;; Do not remove this line.
+(require "pronunciationlib.rkt")
+
+;; The data definitions as given in the question.
+
+;; A Vowel is a (list Sym (anyof 0 1 2))
+
+;; A Phoneme is an (anyof Sym Vowel)
+
+;; A Pronunciation is a (listof Phoneme)
+;; requires: the list contains exactly one vowel with a stress of 1
+
+;; A Dictionary is a (listof (list Str Pronunciation))
+;; requires: The strings in each sub-list appear in alphabetical
+;;           order in the Dictionary.
+
+;; --------------------------
+;; Place your functions here!
+;; --------------------------

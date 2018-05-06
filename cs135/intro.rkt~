@@ -1,0 +1,60 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-intermediate-lambda-reader.ss" "lang")((modname intro) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;;
+;; *************************************************
+;; SHIJIE CHEN (20714286)
+;; CS 135 Fall 2017
+;; Assignment 08, Problem 2
+;; *************************************************
+;;
+
+
+
+;;P2(a)
+(check-expect (keep-ints (list 'a 1 'b 2)) (list 1 2))
+(define (keep-ints loa)
+  (filter integer? loa))
+
+;;P2(b)
+(check-expect (contains? 'fun (list 'racket 'is 'fun)) true)
+(define (contains? elem loa)
+ (not (empty? (filter (lambda (x) (equal? elem x)) loa))))
+
+;;P2(c)
+(check-expect (lookup-al 'abc (list (list 'abc 1))) 1)
+(define (lookup-al k alst)
+  (local[(define final
+         (filter (lambda (x) (equal? (first x) k)) alst))]
+    (cond
+      [(empty? final) empty]
+      [else (second (first final))])))
+
+;;P2(d)
+(check-expect (extract-keys (list (list 'abc 1)(list 'cba 2))) (list 'abc 'cba))
+(define (extract-keys alst)
+  (map first alst))
+
+;;P2(e)
+(check-expect (sum-positive (list 1 2 3 4 5)) 15)
+(define (sum-positive lon)
+  (foldr + 0 lon))
+
+;;P2(f)
+(check-expect (countup-to 6 8) (list 6 7 8))
+(define (countup-to n b)
+  (build-list (+ (- b n) 1) (lambda (x) (+ x n))))
+
+
+;;P2(g)
+(check-expect (shout '("get" "off" "my" "lawn")) '("GET" "OFF" "MY" "LAWN"))
+(define (shout los)
+  (map list->string
+       (map (lambda (x) (map char-upcase x))(map string->list los))))
+
+;;P2(h)
+(define (make-validator list)
+  (lambda (x) (contains? x list)))
+(define primary-colour? (make-validator '(red blue green)))
+(check-expect (primary-colour? 'red) true)
+
